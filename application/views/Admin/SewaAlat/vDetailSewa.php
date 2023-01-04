@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h4>
-                                    <i class="fas fa-globe"></i> Detail Transaksi Sewa
+                                    <i class="fas fa-globe"></i> Detail Transaksi
                                     <small class="float-right">Date: <?= date('Y-m-d') ?></small>
                                 </h4>
 
@@ -46,21 +46,22 @@
                                     <strong><?= $detail['transaksi']->nama_pendaki ?></strong><br>
                                     <?= $detail['transaksi']->alamat_pendaki ?><br>
                                     Phone: <?= $detail['transaksi']->no_hp_pendaki ?><br>
+                                    Total Pembayaran: Rp. <?= number_format($detail['transaksi']->total_sewa)  ?><br>
 
                                 </address>
-                                <h5>Jaminan</h5>
-                                <img class="mb-3" style="width: 250px;" src="<?= base_url('asset/jaminan/' . $detail['transaksi']->jaminan) ?>">
+                                <!-- <h5>Jaminan</h5>
+                                <img class="mb-3" style="width: 250px;" src="<?= base_url('asset/jaminan/' . $detail['transaksi']->jaminan) ?>"> -->
                             </div>
 
-                            <?php
-                            if ($detail['transaksi']->bukti_pem_dp_sewa != '0') {
-                            ?>
+                            <!-- <?php
+                                    if ($detail['transaksi']->bukti_pem_dp_sewa != '0') {
+                                    ?>
                                 <div class="col-sm-4">
                                     <h5>Bukti Pembayaran DP</h5>
                                     <img class="mb-4" style="width: 250px;" src="<?= base_url('asset/PEMBAYARAN/' . $detail['transaksi']->bukti_pem_dp_sewa) ?>">
                                 </div>
                             <?php
-                            }
+                                    }
                             ?>
                             <?php
                             if ($detail['transaksi']->bukti_pem_all_sewa != '0') {
@@ -71,7 +72,7 @@
                                 </div>
                             <?php
                             }
-                            ?>
+                            ?> -->
 
 
 
@@ -124,8 +125,8 @@
                                         <th>No</th>
                                         <th>Nama Jasa</th>
                                         <th>Harga</th>
-                                        <th>Tanggal Rencana Sewa</th>
-                                        <th>Tanggal Selesai Sewa</th>
+                                        <th>Tanggal Rencana Boking</th>
+                                        <th>Tanggal Selesai Boking</th>
                                     </thead>
                                     <tbody>
                                         <?php
@@ -149,7 +150,38 @@
                             <!-- /.col -->
                         </div>
                         <!-- /.row -->
+                        <div class="row">
+                            <!-- accepted payments column -->
+                            <div class="col-6">
 
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-6">
+                                <p class="lead">Amount Due <?= date('Y-m-d') ?></p>
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tr>
+                                            <th style="width:50%">Total:</th>
+                                            <td>Rp. <?= number_format($detail['transaksi']->total_sewa)  ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>DP</th>
+                                            <td>Rp. <?= number_format($detail['transaksi']->stat_pem_dp_sewa)  ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Pelunasan:</th>
+                                            <td>Rp. <?= number_format($detail['transaksi']->stat_pem_all_sewa)  ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Sisa:</th>
+                                            <td>Rp. <?= number_format($detail['transaksi']->total_sewa -  $detail['transaksi']->stat_pem_dp_sewa - $detail['transaksi']->stat_pem_all_sewa)  ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
 
 
                         <!-- this row will not appear when printing -->

@@ -4,7 +4,6 @@
             <div class="col-lg-6 mx-auto text-center">
                 <div class="intro-wrap">
                     <h1 class="mb-0">Transaksi Saya</h1>
-                    <p class="text-white">Berdasarkan Pasal 1548 Kitab Undang-Undang Hukum Perdata (“KUHPer”) pengertian Sewa Menyewa adalah : “Sewa menyewa adalah suatu persetujuan, dengan mana pihak yang satu mengikatkan diri untuk memberikan kenikmatan suatu barang kepada pihak yang lain selama waktu tertentu, dengan pembayaran suatu harga yang disanggupi </p>
                 </div>
             </div>
         </div>

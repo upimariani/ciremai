@@ -50,6 +50,7 @@
                                         <th>Total Sewa</th>
                                         <th>Status Sewa</th>
                                         <th>Status Jaminan</th>
+                                        <th>Bukti Pembayaran</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -91,6 +92,7 @@
                                                 } else if ($value->stat_jaminan == '1') {
                                                 ?>
                                                     <span class="badge badge-warning">Disimpan</span><br>
+                                                    <a href="<?= base_url('asset/jaminan/' . $value->jaminan) ?>"><?= $value->jaminan ?></a><br>
                                                     <a href="<?= base_url('Admin/cTransaksi/dikembalikan/' . $value->id_sewa) ?>" class="btn btn-success">Dikembalikan</a>
                                                 <?php
                                                 } else {
@@ -98,6 +100,34 @@
                                                     <span class="badge badge-success">Sudah Dikembalikan</span>
                                                 <?php
                                                 } ?>
+                                            </td>
+                                            <td>Pembayaran DP<br>
+                                                <?php
+                                                if ($value->bukti_pem_dp_sewa == '0') {
+                                                ?>
+                                                    <span class="badge badge-danger">Belum Melakukan DP</span>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <a href="<?= base_url('asset/PEMBAYARAN/' . $value->bukti_pem_dp_sewa) ?>"><?= $value->bukti_pem_dp_sewa ?></a>
+                                                <?php
+                                                }
+                                                ?>
+                                                Pembayaran Lunas <br>
+                                                <?php
+                                                if ($value->bukti_pem_all_sewa == '0') {
+                                                ?>
+                                                    <span class="badge badge-danger">Belum Melakukan Pelunasan</span>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <a href="<?= base_url('asset/PEMBAYARAN/' . $value->bukti_pem_all_sewa) ?>"><?= $value->bukti_pem_all_sewa ?></a>
+                                                <?php
+                                                }
+                                                ?>
+
+
+
                                             </td>
                                             <td class="text-center"><a class="btn btn-success" href="<?= base_url('Admin/cTransaksi/detail_sewa/' . $value->id_sewa) ?>">Detail Sewa</a></td>
                                         </tr>
@@ -113,6 +143,7 @@
                                         <th>Atas Nama</th>
                                         <th>Total Sewa</th>
                                         <th>Status Sewa</th>
+                                        <th>Bukti Pembayaran</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </tfoot>
