@@ -23,6 +23,17 @@ class cTransaksi extends CI_Controller
         $this->load->view('Admin/SewaAlat/vSewa', $data);
         $this->load->view('Admin/Layout/footer');
     }
+    public function pembatalan()
+    {
+        $data = array(
+            'transaksi' => $this->mTransaksiAdmin->transaksi_sewa()
+        );
+        $this->load->view('Admin/Layout/head');
+        $this->load->view('Admin/Layout/navbar');
+        $this->load->view('Admin/Layout/aside');
+        $this->load->view('Admin/SewaAlat/vPembatalan', $data);
+        $this->load->view('Admin/Layout/footer');
+    }
     public function detail_sewa($id)
     {
         $data = array(

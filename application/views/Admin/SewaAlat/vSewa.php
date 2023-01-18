@@ -139,10 +139,11 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Tanggal Boking</th>
+                                        <th>Tanggal Sewa</th>
                                         <th>Atas Nama</th>
                                         <th>Total Sewa</th>
                                         <th>Status Sewa</th>
+                                        <th>Status Jaminan</th>
                                         <th>Bukti Pembayaran</th>
                                         <th class="text-center">Action</th>
                                     </tr>

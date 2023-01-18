@@ -1,10 +1,9 @@
 <div class="hero hero-inner">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6 mx-auto text-center">
+            <div class="col-lg-12 mx-auto text-center">
                 <div class="intro-wrap">
-                    <h1 class="mb-0">Sewa Alat Pendakian</h1>
-                    <p class="text-white">Sewa menyewa adalah suatu persetujuan, dengan mana pihak yang satu mengikatkan diri untuk memberikan kenikmatan suatu barang kepada pihak yang lain selama waktu tertentu, dengan pembayaran suatu harga yang disanggupi oleh pihak tersebut terakhir itu.</p>
+                    <h1 class="mb-0">Checkout</h1>
                 </div>
             </div>
         </div>
@@ -20,6 +19,16 @@
         <div class="row justify-content-center">
 
             <div class="col-lg-4">
+                <?php
+                if ($error != ' ') {
+                ?>
+                    <div class="alert alert-danger">
+                        <h5>Informasi!</h5>
+                        <p>Upload Ulang Jaminan <?= $error ?></p>
+                    </div>
+                <?php
+                }
+                ?>
                 <?php
                 if ($this->session->userdata('error')) {
                 ?>

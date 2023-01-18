@@ -43,7 +43,8 @@ class cAlatPendakian extends CI_Controller
     public function checkout_alat()
     {
         $data = array(
-            'jasa' => $this->mCheckout->jasa()
+            'jasa' => $this->mCheckout->jasa(),
+            'error' => ' '
         );
         $this->load->view('Pendaki/Layout/head');
         $this->load->view('Pendaki/Layout/nav');
@@ -58,7 +59,8 @@ class cAlatPendakian extends CI_Controller
         $this->load->library('upload', $config);
         if (!$this->upload->do_upload('jaminan')) {
             $data = array(
-                'jasa' => $this->mCheckout->jasa()
+                'jasa' => $this->mCheckout->jasa(),
+                'error' => $this->upload->display_errors()
             );
             $this->load->view('Pendaki/Layout/head');
             $this->load->view('Pendaki/Layout/nav');

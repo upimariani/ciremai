@@ -7,27 +7,52 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <form class="form">
+                            <?php
+                            if ($this->session->userdata('error')) {
+                            ?>
+                                <div class="alert alert-danger">
+                                    <h4>Informasi!!!</h4>
+                                    <p><?= $this->session->userdata('error') ?></p>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if ($this->session->userdata('success')) {
+                            ?>
+                                <div class="alert alert-success">
+                                    <h4>Informasi!!!</h4>
+                                    <p><?= $this->session->userdata('success') ?></p>
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <form class="form" action="<?= base_url('Pendaki/cHalamanUtama/informasi') ?>" method="POST">
                                 <div class="row mb-2">
                                     <div class="col-sm-12 col-md-6 mb-6 mb-lg-0 col-lg-6">
-                                        <select name="" id="" class="form-control custom-select">
-                                            <option value="">Pendakian</option>
-                                            <option value="">Guide</option>
-                                            <option value="">Porter</option>
-                                            <option value="">Alat Pendakian</option>
+
+                                        <select name="jasa" id="" class="form-control custom-select">
+                                            <?php
+                                            foreach ($informasi as $key => $value) {
+                                            ?>
+                                                <option value="<?= $value->id_jasa ?>"><?= $value->nama_jasa ?> | <?php if ($value->type_jasa == '1') {
+                                                                                                                        echo 'Porter';
+                                                                                                                    } else {
+                                                                                                                        echo 'Guide';
+                                                                                                                    } ?></option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col-sm-12 col-md-6 mb-6 mb-lg-0 col-lg-6">
                                         <input type="date" class="form-control" name="date">
                                     </div>
-
-
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
                                         <input type="submit" class="btn btn-primary btn-block" value="Search">
                                     </div>
-
                                 </div>
                             </form>
                         </div>

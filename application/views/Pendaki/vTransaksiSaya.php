@@ -1,7 +1,7 @@
 <div class="hero hero-inner">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6 mx-auto text-center">
+            <div class="col-lg-12 mx-auto text-center">
                 <div class="intro-wrap">
                     <h1 class="mb-0">Transaksi Saya</h1>
                 </div>
@@ -19,6 +19,7 @@
                         <table class="table">
                             <?php
                             foreach ($transaksi_sewa as $key => $value) {
+                                $sisa = $value->total_sewa - $value->stat_pem_dp_sewa - $value->stat_pem_all_sewa;
                             ?>
                                 <tr>
                                     <td>
@@ -46,15 +47,15 @@
                                 </tr>
                                 <tr>
                                     <td>Status Sewa</td>
-                                    <td><?php if ($value->stat_pem_dp_sewa == '0' && $value->stat_pem_all_sewa == '0' && $value->status_sewa == '0') {
+                                    <td><?php if ($value->stat_pem_dp_sewa == '0' && $value->stat_pem_all_sewa == '0') {
                                         ?>
                                             <span class="badge badge-danger">Belum Bayar</span>
                                         <?php
-                                        } else if ($value->stat_pem_dp_sewa != '0' && $value->stat_pem_all_sewa == '0' && $value->status_sewa == '0') {
+                                        } else if ($sisa != '0') {
                                         ?>
                                             <span class="badge badge-warning">Belum Melakukan Pelunasan Pembayaran</span>
                                         <?php
-                                        } else if ($value->stat_pem_dp_sewa != '0' && $value->stat_pem_all_sewa != '0' && $value->status_sewa == '0') {
+                                        } else if ($sisa == '0') {
                                         ?>
                                             <span class="badge badge-info">Menunggu Konfirmasi</span>
                                         <?php
@@ -62,13 +63,24 @@
                                         ?>
                                             <span class="badge badge-success">Selesai</span>
                                         <?php
+                                        } else if ($value->status_sewa == '9') {
+                                        ?>
+                                            <span class="badge badge-danger">Dibatalkan</span>
+                                        <?php
                                         } ?>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td><a class="btn btn-success" href="<?= base_url('pendaki/cTransaksiSaya/detail_sewa/' . $value->id_sewa) ?>">Detail Transaksi</a></td>
-                                </tr>
+                                <?php
+                                if ($value->status_sewa != '9') {
+                                ?>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><a class="btn btn-success" href="<?= base_url('pendaki/cTransaksiSaya/detail_sewa/' . $value->id_sewa) ?>">Detail Transaksi</a></td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+
                             <?php
                             }
                             ?>

@@ -1,7 +1,7 @@
 <div class="hero hero-inner">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6 mx-auto text-center">
+            <div class="col-lg-12 mx-auto text-center">
                 <div class="intro-wrap">
                     <h1 class="mb-0">Informasi Alat Pendakian</h1>
                     <p class="text-white">Tersedia penyewaan alat pendakian</p>

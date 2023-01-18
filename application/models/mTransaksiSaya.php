@@ -28,7 +28,6 @@ class mTransaksiSaya extends CI_Model
     }
     public function detail_boking($id)
     {
-        $data['transaksi'] = $this->db->query("SELECT * FROM `boking_jasa` JOIN pendaki ON boking_jasa.id_pendaki=pendaki.id_pendaki WHERE boking_jasa.id_boking='" . $id . "'")->row();
         $data['boking'] = $this->db->query("SELECT * FROM `sewa_alat` JOIN detail_boking ON sewa_alat.id_sewa=detail_boking.id_sewa JOIN jasa ON jasa.id_jasa=detail_boking.id_jasa WHERE sewa_alat.id_sewa='" . $id . "'")->result();
         return $data;
     }
