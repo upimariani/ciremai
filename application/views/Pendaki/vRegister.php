@@ -36,7 +36,8 @@
                                 <input type="text" name="alamat" class="form-control" placeholder="Alamat" required>
                             </div>
                             <div class="form-group">
-                                <select name="jk" class="form-control">
+                                <select name="jk" class="form-control" required>
+                                    <option value="" class="text-danger">Jenis Kelamin</option>
                                     <option value="Perempuan" class="text-danger">Perempuan</option>
                                     <option value="Laki - Laki" class="text-danger">Laki - Laki</option>
                                 </select>

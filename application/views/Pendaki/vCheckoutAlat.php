@@ -24,7 +24,7 @@
                 ?>
                     <div class="alert alert-danger">
                         <h5>Informasi!</h5>
-                        <p>Upload Ulang Jaminan <?= $error ?></p>
+                        <p>Upload Ulang Jaminan</p>
                     </div>
                 <?php
                 }
@@ -35,6 +35,16 @@
                     <div class="alert alert-danger">
                         <h5>Informasi!</h5>
                         <p><?= $this->session->userdata('error') ?></p>
+                    </div>
+                <?php
+                }
+                ?>
+                <?php
+                if ($this->session->userdata('errors')) {
+                ?>
+                    <div class="alert alert-danger">
+                        <h5>Informasi!</h5>
+                        <p><?= $this->session->userdata('errors') ?></p>
                     </div>
                 <?php
                 }

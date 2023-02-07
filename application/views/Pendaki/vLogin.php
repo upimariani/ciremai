@@ -20,6 +20,26 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
                     <h2 class="heading-section">Login Pendaki</h2>
+                    <?php
+                    if ($this->session->userdata('error')) {
+                    ?>
+                        <div class="alert alert-danger">
+                            <h5>Informasi!</h5>
+                            <p><?= $this->session->userdata('error') ?></p>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <?php
+                    if ($this->session->userdata('success')) {
+                    ?>
+                        <div class="alert alert-success">
+                            <h5>Informasi!</h5>
+                            <p><?= $this->session->userdata('success') ?></p>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
             <div class="row justify-content-center">

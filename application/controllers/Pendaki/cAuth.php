@@ -51,6 +51,8 @@ class cAuth extends CI_Controller
             $this->session->set_userdata($array);
             redirect('pendaki/chalamanutama');
         } else {
+            $this->session->set_flashdata('error', 'Username dan Password Tidak Terdaftar!!!');
+
             redirect('pendaki/cauth');
         }
     }
@@ -60,6 +62,8 @@ class cAuth extends CI_Controller
         $this->session->unset_userdata('id');
         $this->session->unset_userdata('nama');
         $this->session->unset_userdata('no_hp');
+        $this->session->set_flashdata('success', 'Anda Berhasil Login!!!');
+
         redirect('pendaki/cauth');
     }
 }

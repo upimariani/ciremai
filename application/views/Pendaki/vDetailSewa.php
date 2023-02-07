@@ -21,7 +21,7 @@
                         ?>
                             <div class="alert alert-danger">
                                 <h4>Informasi!</h4>
-                                <p>Upload Ulang bukti pembayaran!!! <?= $error ?></p>
+                                <p>Upload Ulang bukti pembayaran!!!</p>
                             </div>
                         <?php
                         }

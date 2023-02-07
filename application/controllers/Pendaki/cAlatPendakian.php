@@ -73,14 +73,25 @@ class cAlatPendakian extends CI_Controller
             $guide = $this->input->post('guide');
             $tgl = $this->input->post('date');
 
-            $cek_porter = $this->mCheckout->cek_ketersediaan($tgl, $porter);
-            $cek_guide = $this->mCheckout->cek_ketersediaan($tgl, $guide);
+            if ($porter == '') {
+                $cek_guide = $this->mCheckout->cek_ketersediaan($tgl, $guide);
+            } else if ($guide == '') {
+                $cek_porter = $this->mCheckout->cek_ketersediaan($tgl, $porter);
+            } else {
+                $cek = $this->mCheckout->cek($tgl, $guide, $guide);
+            }
+
+
+
+
             if ($cek_porter) {
                 $this->session->set_flashdata('error', 'Porter Sudah Ada Yang Boking!!!');
                 redirect('Pendaki/cAlatPendakian/checkout_alat');
-            }
-            if ($cek_guide) {
+            } else if ($cek_guide) {
                 $this->session->set_flashdata('error', 'Guide Sudah Ada Yang Boking!!!');
+                redirect('Pendaki/cAlatPendakian/checkout_alat');
+            } else  if ($cek) {
+                $this->session->set_flashdata('error', 'Guide dan Porter Sudah Ada Yang Boking!!!');
                 redirect('Pendaki/cAlatPendakian/checkout_alat');
             } else {
                 //data transaksi sewa alat
@@ -124,23 +135,26 @@ class cAlatPendakian extends CI_Controller
                 }
 
 
-                $data_porter = array(
-                    'id_sewa' => $id_sewa->id,
-                    'id_jasa' => $porter,
-                    'jml' => '1',
-                    'tgl_rencana' => $this->input->post('date'),
-                    'tgl_selesai' => '0'
-                );
-                $this->db->insert('detail_boking', $data_porter);
-
-                $data_guide = array(
-                    'id_sewa' => $id_sewa->id,
-                    'id_jasa' => $guide,
-                    'jml' => '1',
-                    'tgl_rencana' => $this->input->post('date'),
-                    'tgl_selesai' => '0'
-                );
-                $this->db->insert('detail_boking', $data_guide);
+                if ($porter != 0) {
+                    $data_porter = array(
+                        'id_sewa' => $id_sewa->id,
+                        'id_jasa' => $porter,
+                        'jml' => '1',
+                        'tgl_rencana' => $this->input->post('date'),
+                        'tgl_selesai' => '0'
+                    );
+                    $this->db->insert('detail_boking', $data_porter);
+                }
+                if ($guide != 0) {
+                    $data_guide = array(
+                        'id_sewa' => $id_sewa->id,
+                        'id_jasa' => $guide,
+                        'jml' => '1',
+                        'tgl_rencana' => $this->input->post('date'),
+                        'tgl_selesai' => '0'
+                    );
+                    $this->db->insert('detail_boking', $data_guide);
+                }
 
                 $this->cart->destroy();
                 redirect('pendaki/chalamanutama');
