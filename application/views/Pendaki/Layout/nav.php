@@ -23,11 +23,17 @@
                         <li class="has-children">
                             <a href="#">Transaksi</a>
                             <ul class="dropdown">
-                                <!-- <li><a href="<?= base_url('Pendaki/cGuidePorter') ?>">Guide dan Porter</a></li> -->
-                                <li><a href="<?= base_url('Pendaki/cAlatPendakian') ?>">Alat Pendakian</a></li>
+                                <li><a href="<?= base_url('Pendaki/cGuidePorter') ?>">Boking Guide dan Porter</a></li>
+                                <li><a href="<?= base_url('Pendaki/cAlatPendakian') ?>">Sewa Alat Pendakian</a></li>
                             </ul>
                         </li>
-                        <li><a href="<?= base_url('Pendaki/cTransaksiSaya') ?>">Transaksi Saya</a></li>
+                        <li class="has-children">
+                            <a href="#">Transaksi Saya</a>
+                            <ul class="dropdown">
+                                <li><a href="<?= base_url('Pendaki/cTransaksiSaya/boking') ?>">Boking</a></li>
+                                <li><a href="<?= base_url('Pendaki/cTransaksiSaya') ?>">Sewa</a></li>
+                            </ul>
+                        </li>
                         <!-- <li><a href="about.html">Profil</a></li> -->
                     <?php
                     }

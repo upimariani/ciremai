@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jan 2023 pada 14.14
+-- Waktu pembuatan: 17 Feb 2023 pada 13.37
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -48,21 +48,24 @@ INSERT INTO `alat` (`id_alat`, `nama_alat`, `harga_sewa`, `stok_alat`, `sisa_ala
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `boking_jasa`
+-- Struktur dari tabel `boking`
 --
 
-CREATE TABLE `boking_jasa` (
+CREATE TABLE `boking` (
   `id_boking` int(11) NOT NULL,
   `id_pendaki` int(11) NOT NULL,
   `tgl_boking` varchar(15) NOT NULL,
   `jml_pendaki` int(11) NOT NULL,
-  `total_bayar` varchar(15) NOT NULL,
-  `status_pendakian` int(11) NOT NULL,
-  `stat_pem_dp` varchar(15) NOT NULL,
-  `stat_pem_all` varchar(15) NOT NULL,
-  `bukti_pem_dp` text NOT NULL,
-  `bukti_pem_all` text NOT NULL,
-  `jaminan` text NOT NULL
+  `total_boking` varchar(15) NOT NULL,
+  `stat_boking` int(11) NOT NULL,
+  `stat_pem_dp_boking` int(11) NOT NULL,
+  `stat_pem_all_boking` int(11) NOT NULL,
+  `bukti_pem_dp_boking` text NOT NULL,
+  `bukti_pem_all_boking` text NOT NULL,
+  `jaminan` text NOT NULL,
+  `stat_jaminan` int(11) NOT NULL,
+  `uang_kembali` varchar(15) NOT NULL,
+  `norek` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -73,7 +76,8 @@ CREATE TABLE `boking_jasa` (
 
 CREATE TABLE `detail_boking` (
   `id_detail` int(11) NOT NULL,
-  `id_sewa` int(11) NOT NULL,
+  `id_sewa` int(11) NOT NULL DEFAULT 0,
+  `id_boking` int(11) NOT NULL DEFAULT 0,
   `id_jasa` int(11) NOT NULL,
   `jml` int(11) NOT NULL,
   `tgl_rencana` varchar(20) NOT NULL,
@@ -85,11 +89,9 @@ CREATE TABLE `detail_boking` (
 -- Dumping data untuk tabel `detail_boking`
 --
 
-INSERT INTO `detail_boking` (`id_detail`, `id_sewa`, `id_jasa`, `jml`, `tgl_rencana`, `tgl_selesai`, `time_end`) VALUES
-(1, 1, 2, 1, '2022-12-08', '0', '2022-12-04 13:20:12'),
-(2, 1, 3, 1, '2022-12-08', '0', '2022-12-04 13:20:12'),
-(3, 2, 2, 1, '2023-02-16', '0', '2023-01-11 12:58:17'),
-(4, 2, 3, 1, '2023-02-16', '0', '2023-01-11 12:58:20');
+INSERT INTO `detail_boking` (`id_detail`, `id_sewa`, `id_boking`, `id_jasa`, `jml`, `tgl_rencana`, `tgl_selesai`, `time_end`) VALUES
+(1, 1, 0, 2, 1, '2023-02-23', '0', '2023-02-17 12:17:48'),
+(2, 1, 0, 3, 1, '2023-02-23', '0', '2023-02-17 12:17:48');
 
 -- --------------------------------------------------------
 
@@ -112,10 +114,7 @@ CREATE TABLE `detail_sewa` (
 --
 
 INSERT INTO `detail_sewa` (`id_detail_sewa`, `id_sewa`, `id_alat`, `tgl_rencana_sewa`, `tgl_selesai_sewa`, `time_end_sewa`, `jml_sewa`) VALUES
-(1, 1, 3, '2022-12-08', '0', '2022-12-04 13:20:12', 1),
-(2, 1, 2, '2022-12-08', '0', '2022-12-04 13:20:12', 1),
-(3, 2, 3, '2023-02-16', '0', '2023-01-11 12:58:24', 1),
-(4, 2, 2, '2023-02-16', '0', '2023-01-11 12:58:27', 1);
+(1, 1, 3, '2023-02-23', '0', '2023-02-17 12:17:48', 1);
 
 -- --------------------------------------------------------
 
@@ -193,8 +192,7 @@ CREATE TABLE `sewa_alat` (
 --
 
 INSERT INTO `sewa_alat` (`id_sewa`, `id_pendaki`, `tgl_sewa`, `jml_pendaki`, `total_sewa`, `status_sewa`, `stat_pem_dp_sewa`, `stat_pem_all_sewa`, `bukti_pem_dp_sewa`, `bukti_pem_all_sewa`, `jaminan`, `stat_jaminan`, `uang_kembali`, `norek`) VALUES
-(1, 1, '2022-12-04', 2, '1295000', 0, '1000000', '295000', 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-13.jpg', 'Screenshot_2022-06-27_120554.png', '11.png', 0, '', ''),
-(2, 1, '2023-01-10', 3, '1345000', 9, '0', '1345000', '0', 'Screenshot_2022-06-30_1842025.png', 'Screenshot_2022-06-27_120700.png', 0, '1345000', '099-0012');
+(1, 1, '2023-02-17', 3, '1195000', 0, '0', '0', '0', '0', 'Screenshot_2022-06-30_1842028.png', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -232,9 +230,9 @@ ALTER TABLE `alat`
   ADD PRIMARY KEY (`id_alat`);
 
 --
--- Indeks untuk tabel `boking_jasa`
+-- Indeks untuk tabel `boking`
 --
-ALTER TABLE `boking_jasa`
+ALTER TABLE `boking`
   ADD PRIMARY KEY (`id_boking`);
 
 --
@@ -284,22 +282,22 @@ ALTER TABLE `alat`
   MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `boking_jasa`
+-- AUTO_INCREMENT untuk tabel `boking`
 --
-ALTER TABLE `boking_jasa`
+ALTER TABLE `boking`
   MODIFY `id_boking` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_boking`
 --
 ALTER TABLE `detail_boking`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_sewa`
 --
 ALTER TABLE `detail_sewa`
-  MODIFY `id_detail_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_detail_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `jasa`
@@ -317,7 +315,7 @@ ALTER TABLE `pendaki`
 -- AUTO_INCREMENT untuk tabel `sewa_alat`
 --
 ALTER TABLE `sewa_alat`
-  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

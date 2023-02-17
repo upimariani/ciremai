@@ -11,7 +11,7 @@ class mCheckout extends CI_Model
     }
     public function cek_ketersediaan($date, $id_jasa)
     {
-        return $this->db->query("SELECT * FROM `detail_boking` WHERE tgl_rencana='" . $date . "' AND id_jasa='" . $id_jasa . "' AND tgl_selesai='0'")->row();
+        return $this->db->query("SELECT * FROM `detail_boking` JOIN jasa ON jasa.id_jasa=detail_boking.id_jasa WHERE tgl_rencana='" . $date . "' AND detail_boking.id_jasa='" . $id_jasa . "' AND tgl_selesai='0'")->row();
     }
     public function cek($date, $id_guide, $id_porter)
     {

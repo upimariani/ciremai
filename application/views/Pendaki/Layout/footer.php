@@ -99,7 +99,15 @@
         });
     })
 </script>
+<script>
+    function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
 
+            return false;
+        return true;
+    }
+</script>
 <script src="<?= base_url('asset/tour-1.0.0/') ?>js/custom.js"></script>
 <script>
     console.log = function() {}

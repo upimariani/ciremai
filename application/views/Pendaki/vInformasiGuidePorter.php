@@ -88,50 +88,51 @@
                 $qty = 0;
                 foreach ($this->cart->contents() as $key => $value) {
                     $qty += $value['qty'];
-                    if ($qty != 0) {
+                }
+                if ($qty != 0) {
                 ?>
-                        <div class="col-lg-12">
-                            <h2 class="section-title text-center mb-3">Informasi Keranjang Jasa</h2>
-                        </div>
-                        <table class="table">
-                            <thead>
+                    <div class="col-lg-12">
+                        <h2 class="section-title text-center mb-3">Informasi Keranjang Jasa</h2>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Jasa</th>
+                                <th>Type Jasa</th>
+                                <th>Harga</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no = 1;
+                            foreach ($this->cart->contents() as $key => $value) {
+                            ?>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama Jasa</th>
-                                    <th>Type Jasa</th>
-                                    <th>Harga</th>
-                                    <th>Action</th>
+                                    <td><?= $no++ ?>.</td>
+                                    <td><?= $value['name'] ?></td>
+                                    <td><?php if ($value['type'] == '1') {
+                                            echo '<span class="badge badge-success">Porter</span>';
+                                        } else {
+                                            echo '<span class="badge badge-primary">Guide</span>';
+                                        }  ?></td>
+                                    <td>Rp. <?= number_format($value['price'])  ?></td>
+                                    <td>
+                                        <a href="<?= base_url('Pendaki/cGuidePorter/deletecart/' . $value['rowid']) ?>">Hapus</a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $no = 1;
-                                foreach ($this->cart->contents() as $key => $value) {
-                                ?>
-                                    <tr>
-                                        <td><?= $no++ ?>.</td>
-                                        <td><?= $value['name'] ?></td>
-                                        <td><?php if ($value['type'] == '1') {
-                                                echo '<span class="badge badge-success">Porter</span>';
-                                            } else {
-                                                echo '<span class="badge badge-primary">Guide</span>';
-                                            }  ?></td>
-                                        <td>Rp. <?= number_format($value['price'])  ?></td>
-                                        <td>
-                                            <a href="<?= base_url('Pendaki/cGuidePorter/deletecart/' . $value['rowid']) ?>">Hapus</a>
-                                        </td>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                        <a href="<?= base_url('pendaki/cGuidePorter/checkout') ?>" class="btn btn-warning mt-3">Checkout</a>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                    <a href="<?= base_url('pendaki/cGuidePorter/checkout') ?>" class="btn btn-warning mt-3">Checkout</a>
 
 
                 <?php
-                    }
                 }
+
                 ?>
 
             </div>

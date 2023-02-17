@@ -14,8 +14,8 @@ class mTransaksiAdmin extends CI_Model
     public function transaksi_boking()
     {
         $this->db->select('*');
-        $this->db->from('boking_jasa');
-        $this->db->join('pendaki', 'pendaki.id_pendaki = boking_jasa.id_pendaki', 'left');
+        $this->db->from('boking');
+        $this->db->join('pendaki', 'pendaki.id_pendaki = boking.id_pendaki', 'left');
         return $this->db->get()->result();
     }
 }

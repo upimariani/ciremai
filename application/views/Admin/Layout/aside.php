@@ -85,14 +85,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a href="<?= base_url('Admin/cTransaksi/boking') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cTransaksi' && $this->uri->segment(3) == 'boking') {
                                                                                                         echo 'active';
                                                                                                     }  ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Boking Guide dan Porter</p>
                             </a>
-                        </li> -->
+                        </li>
                         <li class="nav-item">
                             <a href="<?= base_url('Admin/cTransaksi/sewa') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cTransaksi' && $this->uri->segment(3) == 'sewa') {
                                                                                                     echo 'active';
@@ -111,14 +111,39 @@
                         <p>Transaksi</p>
                     </a>
                 </li> -->
-                <li class="nav-item">
-                    <a href="<?= base_url('Admin/cTransaksi/pembatalan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cTransaksi' && $this->uri->segment(3) == 'pembatalan') {
-                                                                                                    echo 'active';
-                                                                                                }  ?>">
+                <li class="nav-item has-treeview <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cPembatalan') {
+                                                        echo 'menu-open';
+                                                    }  ?>">
+
+                    <a href="#" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cPembatalan') {
+                                                    echo 'active';
+                                                }  ?>">
                         <i class="nav-icon fas fa-times"></i>
-                        <p>Pembatalan</p>
+                        <p>
+                            Pembatalan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('Admin/cPembatalan/pembatalan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cPembatalan' && $this->uri->segment(3) == 'pembatalan') {
+                                                                                                            echo 'active';
+                                                                                                        }  ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pembatalan Sewa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('Admin/cPembatalan/pembatalan_boking') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cPembatalan' && $this->uri->segment(3) == 'pembatalan_boking') {
+                                                                                                                    echo 'active';
+                                                                                                                }  ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pembatalan Boking</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
                 <li class="nav-item">
                     <a href="<?= base_url('Admin/cLogin/logout') ?>" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>

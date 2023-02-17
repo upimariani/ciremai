@@ -5,7 +5,7 @@ class mGuidePorter extends CI_Model
 {
     public function insert_boking($data)
     {
-        $this->db->insert('boking_jasa', $data);
+        $this->db->insert('boking', $data);
     }
     public function insert_detail_boking($data)
     {
@@ -13,7 +13,7 @@ class mGuidePorter extends CI_Model
     }
     public function cek_id_boking()
     {
-        return $this->db->query("SELECT MAX(id_boking) as id FROM `boking_jasa`")->row();
+        return $this->db->query("SELECT MAX(id_boking) as id FROM `boking`")->row();
     }
 }
 

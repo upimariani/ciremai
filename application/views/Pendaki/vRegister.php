@@ -30,7 +30,7 @@
                                 <input type="text" name="nama" class="form-control" placeholder="Nama Pendaki" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="no_hp" class="form-control" placeholder="No Telepon" required>
+                                <input type="number" name="no_hp" class="form-control" placeholder="No Telepon" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" name="alamat" class="form-control" placeholder="Alamat" required>
