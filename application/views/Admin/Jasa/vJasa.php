@@ -51,6 +51,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Foto</th>
                                         <th>Nama Jasa</th>
                                         <th>Deskripsi</th>
                                         <th>Harga</th>
@@ -67,6 +68,7 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
+                                            <td> <img style="width: 150px;" src="<?= base_url('asset/FOTO-JASA/' . $value->foto) ?>"></td>
                                             <td><?= $value->nama_jasa ?></td>
                                             <td><?= $value->deskripsi ?></td>
                                             <td>Rp. <?= number_format($value->harga)  ?></td>
@@ -133,47 +135,50 @@
 
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
-        <form action="<?= base_url('Admin/cDataMaster/createjasa') ?>" method="POST">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Masukkan Data Jasa</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <?php echo form_open_multipart('Admin/cDataMaster/createjasa'); ?>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Masukkan Data Jasa</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nama Jasa</label>
+                    <input type="text" name="nama" class="form-control" placeholder="Enter ..." required>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Nama Jasa</label>
-                        <input type="text" name="nama" class="form-control" placeholder="Enter ..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Deskripsi</label>
-                        <textarea class="textarea" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Harga</label>
-                        <input type="number" name="harga" class="form-control" placeholder="Enter ..." required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Jumlah</label>
-                        <input type="number" name="jumlah" class="form-control" placeholder="Enter ..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Type Jasa</label>
-                        <select name="type" class="form-control" required>
-                            <option value="">---Pilih Type Jasa---</option>
-                            <option value="1">Porter</option>
-                            <option value="2">Guide</option>
-                        </select>
-                    </div>
-
+                <div class="form-group">
+                    <label>Deskripsi</label>
+                    <textarea class="textarea" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                <div class="form-group">
+                    <label>Harga</label>
+                    <input type="number" name="harga" class="form-control" placeholder="Enter ..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Jumlah</label>
+                    <input type="number" name="jumlah" class="form-control" placeholder="Enter ..." required>
+                </div>
+                <div class="form-group">
+                    <label>Type Jasa</label>
+                    <select name="type" class="form-control" required>
+                        <option value="">---Pilih Type Jasa---</option>
+                        <option value="1">Porter</option>
+                        <option value="2">Guide</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Foto</label><br>
+                    <input type="file" name="gambar" class="form-control" placeholder="Enter ...">
                 </div>
             </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
         </form>
         <!-- /.modal-content -->
     </div>
@@ -187,51 +192,55 @@ foreach ($jasa as $key => $value) {
 ?>
     <div class="modal fade" id="edit<?= $value->id_jasa ?>">
         <div class="modal-dialog">
-            <form action="<?= base_url('Admin/cDataMaster/updatejasa/' . $value->id_jasa) ?>" method="POST">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Masukkan Data Jasa</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <?php echo form_open_multipart('Admin/cDataMaster/updatejasa/' . $value->id_jasa) ?>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Masukkan Data Jasa</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama Jasa</label>
+                        <input type="text" value="<?= $value->nama_jasa ?>" name="nama" class="form-control" placeholder="Enter ..." required>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Nama Jasa</label>
-                            <input type="text" value="<?= $value->nama_jasa ?>" name="nama" class="form-control" placeholder="Enter ..." required>
-                        </div>
-                        <div class="form-group">
-                            <label>Deskripsi</label>
-                            <textarea class="textarea" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $value->deskripsi ?></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Harga</label>
-                            <input type="number" value="<?= $value->harga ?>" name="harga" class="form-control" placeholder="Enter ..." required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Jumlah</label>
-                            <input type="number" name="jumlah" value="<?= $value->jumlah ?>" class="form-control" placeholder="Enter ..." required>
-                        </div>
-                        <div class="form-group">
-                            <label>Type Jasa</label>
-                            <select name="type" class="form-control" required>
-                                <option value="">---Pilih Type Jasa---</option>
-                                <option value="1" <?php if ($value->type_jasa == '1') {
-                                                        echo 'selected';
-                                                    } ?>>Porter</option>
-                                <option value="2" <?php if ($value->type_jasa == '2') {
-                                                        echo 'selected';
-                                                    } ?>>Guide</option>
-                            </select>
-                        </div>
-
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <textarea class="textarea" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $value->deskripsi ?></textarea>
                     </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <input type="number" value="<?= $value->harga ?>" name="harga" class="form-control" placeholder="Enter ..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jumlah</label>
+                        <input type="number" name="jumlah" value="<?= $value->jumlah ?>" class="form-control" placeholder="Enter ..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Type Jasa</label>
+                        <select name="type" class="form-control" required>
+                            <option value="">---Pilih Type Jasa---</option>
+                            <option value="1" <?php if ($value->type_jasa == '1') {
+                                                    echo 'selected';
+                                                } ?>>Porter</option>
+                            <option value="2" <?php if ($value->type_jasa == '2') {
+                                                    echo 'selected';
+                                                } ?>>Guide</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Foto</label><br>
+                        <img style="width: 250px;" src="<?= base_url('asset/FOTO-JASA/' . $value->foto) ?>">
+                        <input type="file" name="gambar" class="form-control" placeholder="Enter ...">
                     </div>
                 </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
             </form>
             <!-- /.modal-content -->
         </div>

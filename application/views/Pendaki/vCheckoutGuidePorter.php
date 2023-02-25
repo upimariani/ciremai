@@ -123,7 +123,7 @@
                     </div>
                     <div class="form-group">
                         <label class="text-black" for="email">Tanggal Rencana Penyewaan</label>
-                        <input type="date" name="date" class="form-control" id="email" aria-describedby="emailHelp" required>
+                        <input type="date" name="date" class="form-control" id="datePickerId" aria-describedby="emailHelp" required>
                         <small id="emailHelp" class="form-text text-muted">Jangan lupa untuk mengisi tanggal boking</small>
                     </div>
                     <div class="form-group">

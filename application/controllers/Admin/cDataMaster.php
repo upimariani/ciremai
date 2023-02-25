@@ -77,20 +77,69 @@ class cDataMaster extends CI_Controller
     }
     public function createjasa()
     {
-        $data = array(
-            'nama_jasa' => $this->input->post('nama'),
-            'deskripsi' => $this->input->post('deskripsi'),
-            'harga' => $this->input->post('harga'),
-            'jumlah' => $this->input->post('jumlah'),
-            'status_jasa' => '0',
-            'type_jasa' => $this->input->post('type')
-        );
-        $this->mJasa->insert($data);
-        $this->session->set_flashdata('success', 'Data Jasa Berhasil Ditambahkan!');
-        redirect('Admin/cDataMaster/jasa', 'refresh');
+        $config['upload_path']          = './asset/FOTO-JASA';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 500000;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('gambar')) {
+            $data = array(
+                'jasa' => $this->mJasa->select()
+            );
+            $this->load->view('Admin/Layout/head');
+            $this->load->view('Admin/Layout/navbar');
+            $this->load->view('Admin/Layout/aside');
+            $this->load->view('Admin/Jasa/vJasa', $data);
+            $this->load->view('Admin/Layout/footer');
+        } else {
+            $upload_data = $this->upload->data();
+            $data = array(
+                'nama_jasa' => $this->input->post('nama'),
+                'deskripsi' => $this->input->post('deskripsi'),
+                'harga' => $this->input->post('harga'),
+                'jumlah' => $this->input->post('jumlah'),
+                'status_jasa' => '0',
+                'type_jasa' => $this->input->post('type'),
+                'foto' => $upload_data['file_name'],
+            );
+            $this->mJasa->insert($data);
+            $this->session->set_flashdata('success', 'Data Jasa Berhasil Ditambahkan!');
+            redirect('Admin/cDataMaster/jasa', 'refresh');
+        }
     }
     public function updatejasa($id)
     {
+        $config['upload_path']          = './asset/FOTO-JASA';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 500000;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('gambar')) {
+            $data = array(
+                'jasa' => $this->mJasa->select()
+            );
+            $this->load->view('Admin/Layout/head');
+            $this->load->view('Admin/Layout/navbar');
+            $this->load->view('Admin/Layout/aside');
+            $this->load->view('Admin/Jasa/vJasa', $data);
+            $this->load->view('Admin/Layout/footer');
+        } else {
+            $upload_data = $this->upload->data();
+            $data = array(
+                'nama_jasa' => $this->input->post('nama'),
+                'deskripsi' => $this->input->post('deskripsi'),
+                'harga' => $this->input->post('harga'),
+                'jumlah' => $this->input->post('jumlah'),
+                'status_jasa' => '0',
+                'type_jasa' => $this->input->post('type'),
+                'foto' => $upload_data['file_name'],
+            );
+            $this->mJasa->update($id, $data);
+            $this->session->set_flashdata('success', 'Data Jasa Berhasil Diperbaharui!');
+            redirect('Admin/cDataMaster/jasa', 'refresh');
+        }
         $data = array(
             'nama_jasa' => $this->input->post('nama'),
             'deskripsi' => $this->input->post('deskripsi'),

@@ -62,7 +62,7 @@ class cAuth extends CI_Controller
         $this->session->unset_userdata('id');
         $this->session->unset_userdata('nama');
         $this->session->unset_userdata('no_hp');
-        $this->session->set_flashdata('success', 'Anda Berhasil Login!!!');
+        $this->session->set_flashdata('success', 'Anda Berhasil Logout!!!');
 
         redirect('pendaki/cauth');
     }

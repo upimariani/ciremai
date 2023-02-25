@@ -73,6 +73,9 @@
 
 <script src="<?= base_url('asset/tour-1.0.0/') ?>js/typed.js"></script>
 <script>
+    datePickerId.min = new Date().toISOString().split("T")[0];
+</script>
+<script>
     $(function() {
         var slides = $('.slides'),
             images = slides.find('img');

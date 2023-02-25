@@ -53,6 +53,8 @@
                                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Detail Informasi?</button>
                                             </h2>
                                             <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion_1">
+                                                <a href="#" class="d-block mb-3"><img style="height: 250px;" src="<?= base_url('asset/FOTO-JASA/') ?><?= $value->foto ?>" alt="Image" class="img-fluid"></a>
+
                                                 <div class="accordion-body">
                                                     <span class="d-flex align-items-center loc mb-2">
                                                         <span class="icon-room mr-3"></span>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Feb 2023 pada 13.37
+-- Waktu pembuatan: 19 Feb 2023 pada 13.57
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -129,16 +129,18 @@ CREATE TABLE `jasa` (
   `harga` varchar(15) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `status_jasa` int(11) NOT NULL,
-  `type_jasa` int(11) NOT NULL
+  `type_jasa` int(11) NOT NULL,
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `jasa`
 --
 
-INSERT INTO `jasa` (`id_jasa`, `nama_jasa`, `deskripsi`, `harga`, `jumlah`, `status_jasa`, `type_jasa`) VALUES
-(2, 'Jajang', '<p>Jajang merupakan <font color=\"#ffff00\" style=\"background-color: rgb(107, 173, 222);\">PORTER </font>ahli dalam pendakian gunung, sudah memiliki pengalaman ke 10 Gunung yang ada di Indonesia.</p>', '500000', 1, 0, 1),
-(3, 'Iman', 'Dia adalah sorang Guide', '500000', 1, 0, 2);
+INSERT INTO `jasa` (`id_jasa`, `nama_jasa`, `deskripsi`, `harga`, `jumlah`, `status_jasa`, `type_jasa`, `foto`) VALUES
+(2, 'Jajang', '<p>Jajang merupakan <font color=\"#ffff00\" style=\"background-color: rgb(107, 173, 222);\">PORTER </font>ahli dalam pendakian gunung, sudah memiliki pengalaman ke 10 Gunung yang ada di Indonesia.</p>', '500000', 1, 0, 1, 'photo4.jpg'),
+(3, 'Iman', 'Dia adalah sorang Guide', '500000', 1, 0, 2, 'photo3.jpg'),
+(4, 'Taofiq', '<p>Taofiq adalah guide handal</p>', '500000', 1, 0, 2, 'photo2.jpg');
 
 -- --------------------------------------------------------
 
@@ -303,7 +305,7 @@ ALTER TABLE `detail_sewa`
 -- AUTO_INCREMENT untuk tabel `jasa`
 --
 ALTER TABLE `jasa`
-  MODIFY `id_jasa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jasa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `pendaki`

@@ -57,24 +57,26 @@
                                 <tbody>
                                     <?php
                                     $no = 1;
+                                    $sisa = 0;
                                     foreach ($transaksi as $key => $value) {
+                                        $sisa = $value->total_boking - $value->stat_pem_dp_boking - $value->stat_pem_all_boking;
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->tgl_boking ?></td>
                                             <td><?= $value->nama_pendaki ?></td>
                                             <td>Rp. <?= number_format($value->total_boking)  ?></td>
-                                            <td class="text-center"><?php if ($value->stat_boking == '0' && $value->bukti_pem_all_boking != '0') {
+                                            <td class="text-center"><?php if ($sisa == 0 && $value->stat_boking == '0') {
                                                                     ?>
                                                     <span class="badge badge-info">Menunggu Konfirmasi</span><br>
                                                     <a href="<?= base_url('Admin/cTransaksi/konfirmasi_boking/' . $value->id_boking) ?>" class="btn btn-info">Konfirmasi</a>
                                                 <?php
-                                                                    } else if ($value->stat_boking == '0' && $value->bukti_pem_all_boking == '0') {
+                                                                    } else if ($sisa != 0) {
                                                 ?>
                                                     <span class="badge badge-danger">Belum Melakukan Pembayaran</span>
 
                                                 <?php
-                                                                    } else if ($value->stat_boking == '1' && $value->bukti_pem_all_boking != '0') {
+                                                                    } else if ($value->stat_boking == '1' && $sisa == 0) {
                                                 ?>
                                                     <span class="badge badge-danger">Dalam Proses</span><br>
                                                     <a href="<?= base_url('Admin/cTransaksi/selesai_boking/' . $value->id_boking) ?>" class="btn btn-danger">Selesai</a>
@@ -115,14 +117,20 @@
                                                 ?>
                                                 Pembayaran Lunas <br>
                                                 <?php
-                                                if ($value->bukti_pem_all_boking == '0') {
+                                                if ($value->bukti_pem_all_boking == '0' && $sisa != 0) {
                                                 ?>
                                                     <span class="badge badge-danger">Belum Melakukan Pelunasan</span>
-                                                <?php
+                                                    <?php
                                                 } else {
-                                                ?>
-                                                    <a href="<?= base_url('asset/PEMBAYARAN/' . $value->bukti_pem_all_boking) ?>"><?= $value->bukti_pem_all_boking ?></a>
+                                                    if ($sisa == '0' && $value->stat_pem_all_boking == '0') {
+                                                        echo 'Sudah Lunas';
+                                                    } else {
+
+                                                    ?>
+                                                        <a href="<?= base_url('asset/PEMBAYARAN/' . $value->bukti_pem_all_boking) ?>"><?= $value->bukti_pem_all_boking ?></a>
+
                                                 <?php
+                                                    }
                                                 }
                                                 ?>
 

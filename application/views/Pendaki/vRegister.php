@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" href="<?= base_url('asset/login-form-20/') ?>css/style.css">
 
+
+
+
 </head>
 
 <body class="img js-fullheight" style="background-image: url(http://localhost/ciremai/asset/login-form-20/images/bg.jpg);">
@@ -30,7 +33,7 @@
                                 <input type="text" name="nama" class="form-control" placeholder="Nama Pendaki" required>
                             </div>
                             <div class="form-group">
-                                <input type="number" name="no_hp" class="form-control" placeholder="No Telepon" required>
+                                <input type="text" onkeypress="return hanyaAngka(event)" name="no_hp" class="form-control" placeholder="No Telepon" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" name="alamat" class="form-control" placeholder="Alamat" required>
@@ -71,6 +74,15 @@
     <script src="<?= base_url('asset/login-form-20/') ?>js/bootstrap.min.js"></script>
     <script src="<?= base_url('asset/login-form-20/') ?>js/main.js"></script>
 
+    <script>
+        function hanyaAngka(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+                return false;
+            return true;
+        }
+    </script>
 </body>
 
 </html>
